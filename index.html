@@ -24,6 +24,25 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
 
+    <script src="https://unpkg.com/lenis@1.3.11/dist/lenis.min.js"></script>
+    <script>
+      const lenis = new Lenis({
+        duration: 1.6,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        wheelMultiplier: 0.9,
+        touchMultiplier: 1.4,
+        infinite: false,
+      });
+
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+
+      requestAnimationFrame(raf);
+    </script>
+
     <style>
       /* ============================================================
            DESIGN SYSTEM — SIPPZO (vanilla CSS)
@@ -74,6 +93,20 @@
         color: var(--color-charcoal);
         line-height: 1.6;
         overflow-x: hidden;
+        width: 100%;
+      }
+
+      html.lenis,
+      html.lenis body {
+        height: auto;
+      }
+
+      .lenis.lenis-smooth {
+        scroll-behavior: auto !important;
+      }
+
+      .lenis.lenis-stopped {
+        overflow: hidden;
       }
 
       /* ---------- UTILITY OVERRIDES ---------- */
@@ -472,7 +505,7 @@
                     id="productImage"
                     src="images/product1.webp"
                     alt="Product"
-                    class="w-full h-full object-contain transition-opacity duration-500"
+                    class="w-full h-full object-contain transition-opacity duration-500 opacity-100"
                   />
                 </div>
               </div>
@@ -483,8 +516,8 @@
                 style="
                   top: 50%;
                   left: 50%;
-                  transform: translate(-50%, -50%) translate(160px, 0px);
-                  animation: float 3.5s ease-in-out infinite;
+                  transform: translate(-50%, -50%) translate(200px, 0px);
+                  animation: float 4.5s ease-in-out infinite;
                 "
               >
                 <i class="fa-solid fa-droplet" style="color: #2b6bff"></i>
@@ -495,7 +528,7 @@
                   top: 50%;
                   left: 50%;
                   transform: translate(-50%, -50%) translate(-80px, 138px);
-                  animation: float 4.5s ease-in-out infinite 0.3s;
+                  animation: float 4s ease-in-out infinite 0.3s;
                 "
               >
                 <i class="fa-solid fa-bolt" style="color: #e8652d"></i>
@@ -990,17 +1023,18 @@
           </h2>
           <p class="text-lg text-[#F5F4F0]/50 max-w-lg mx-auto mt-4">
             Be among the first to experience portable food technology.
-          </p>
+          </p> 
           <div class="flex flex-wrap justify-center gap-4 mt-8">
             <a
-              href="#"
+              href="https://wa.me/916206128228"
               class="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-[#E8652D] text-white text-sm sm:text-base font-semibold no-underline hover:bg-[#F47A3A] transition-all duration-300 shadow-[0_8px_24px_rgba(232,101,45,0.25)]"
             >
               Get Early Access
               <i class="fa-solid fa-arrow-right text-xs"></i>
             </a>
             <a
-              href="#technology"
+              target="_blank"
+              href="https://www.linkedin.com/in/sagar-kumar-b1701139a/"
               class="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-white text-[#1A1A1A] text-sm sm:text-base font-semibold no-underline hover:bg-[#F5F4F0] transition-all duration-300"
             >
               Learn More
@@ -1018,11 +1052,11 @@
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
           <div class="col-span-2 md:col-span-2">
             <div class="flex items-center gap-2 mb-4">
-              <div
+              <!-- <div
                 class="w-8 h-8 rounded-full bg-[#E8652D] flex items-center justify-center"
               >
                 <span class="text-white font-bold text-sm">S</span>
-              </div>
+              </div> -->
               <span class="font-bold text-[#F5F4F0] text-lg">SIPPZO</span>
             </div>
             <p class="text-sm text-[#F5F4F0]/40 max-w-sm">
@@ -1030,7 +1064,6 @@
               anytime.
             </p>
           </div>
-
 
           <div>
             <h5
@@ -1041,21 +1074,24 @@
             <ul class="space-y-2 text-sm text-[#F5F4F0]/50">
               <li>
                 <a
-                  href="#"
+                  target="_blank"
+                  href="https://www.linkedin.com/in/sagar-kumar-b1701139a/"
                   class="hover:text-[#F5F4F0] transition-colors no-underline"
                   >About</a
                 >
               </li>
               <li>
                 <a
-                  href="#"
+                  target="_blank"
+                  href="https://www.linkedin.com/in/sagar-kumar-b1701139a/"
                   class="hover:text-[#F5F4F0] transition-colors no-underline"
                   >Careers</a
                 >
               </li>
               <li>
                 <a
-                  href="#"
+                  target="_blank"
+                  href="https://www.linkedin.com/in/sagar-kumar-b1701139a/"
                   class="hover:text-[#F5F4F0] transition-colors no-underline"
                   >Press</a
                 >
@@ -1072,14 +1108,16 @@
             <ul class="space-y-2 text-sm text-[#F5F4F0]/50">
               <li>
                 <a
-                  href="#"
+                  target="_blank"
+                  href="https://www.linkedin.com/in/sagar-kumar-b1701139a/"
                   class="hover:text-[#F5F4F0] transition-colors no-underline"
                   ><i class="fa-brands fa-x-twitter mr-2"></i>Twitter</a
                 >
               </li>
               <li>
                 <a
-                  href="#"
+                  target="_blank"
+                  href="https://www.linkedin.com/in/sagar-kumar-b1701139a/"
                   class="hover:text-[#F5F4F0] transition-colors no-underline"
                   ><i class="fa-brands fa-instagram mr-2"></i>Instagram</a
                 >
@@ -1114,7 +1152,6 @@
         "images/product2.webp",
         "images/product3.webp",
         "images/product4.webp",
-        "images/product6.webp",
       ];
 
       const img = document.getElementById("productImage");
@@ -1135,6 +1172,20 @@
           img.classList.replace("opacity-0", "opacity-100");
         }, 500);
       }, displayTime);
+
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", (e) => {
+          e.preventDefault();
+
+          const target = document.querySelector(anchor.getAttribute("href"));
+
+          if (target) {
+            lenis.scrollTo(target, {
+              duration: 1.5,
+            });
+          }
+        });
+      });
     </script>
 
     <!-- ============================================================
