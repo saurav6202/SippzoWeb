@@ -1,0 +1,1307 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SIPPZO — The Future of Portable Food Technology</title>
+    <meta
+      name="description"
+      content="SIPPZO's HH-Food Technology™ turns ordinary water into a hot meal. No electricity, no gas, no microwave. Just add water."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome 6 Free (icons) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <style>
+      /* ============================================================
+           DESIGN SYSTEM — SIPPZO (vanilla CSS)
+           ============================================================ */
+
+      /* ---------- RESET & BASE ---------- */
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --color-charcoal: #1a1a1a;
+        --color-charcoal-light: #2a2a2a;
+        --color-charcoal-lighter: #3a3a3a;
+        --color-warm-white: #f5f4f0;
+        --color-warm-white-dark: #ebeae5;
+        --color-orange: #e8652d;
+        --color-orange-light: #f47a3a;
+        --color-orange-glow: rgba(232, 101, 45, 0.15);
+        --color-blue: #2b6bff;
+        --color-blue-light: #4a84ff;
+        --color-blue-glow: rgba(43, 107, 255, 0.12);
+        --color-gray-soft: #f0efeb;
+        --color-gray-mid: #d0cfcb;
+        --color-gray-text: #8a8a8a;
+        --color-white: #ffffff;
+        --font-family:
+          "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        --radius-xl: 28px;
+        --radius-full: 9999px;
+        --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      body {
+        font-family: var(--font-family);
+        background-color: var(--color-warm-white);
+        color: var(--color-charcoal);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      /* ---------- UTILITY OVERRIDES ---------- */
+      .text-gradient {
+        background: linear-gradient(
+          135deg,
+          var(--color-orange) 0%,
+          var(--color-blue) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .text-gradient-orange {
+        background: linear-gradient(
+          135deg,
+          var(--color-orange) 0%,
+          var(--color-orange-light) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .glass-nav {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      /* ---------- ANIMATIONS ---------- */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          /* transform: translateY(0px); */
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+      }
+
+      @keyframes spin-slow {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes pulse-glow {
+        0%,
+        100% {
+          opacity: 0.5;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.8;
+          transform: scale(1.05);
+        }
+      }
+
+      @keyframes shimmer {
+        0% {
+          background-position: -200% 0;
+        }
+        100% {
+          background-position: 200% 0;
+        }
+      }
+
+      .animate-fade-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.8s var(--ease-out-expo),
+          transform 0.8s var(--ease-out-expo);
+      }
+      .animate-fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+      .animate-spin-slow {
+        animation: spin-slow 20s linear infinite;
+      }
+      .animate-spin-reverse {
+        animation: spin-slow 15s linear infinite reverse;
+      }
+      .animate-pulse-glow {
+        animation: pulse-glow 3s ease-in-out infinite;
+      }
+
+      /* ---------- SCROLLBAR ---------- */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--color-gray-soft);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--color-charcoal-lighter);
+        border-radius: var(--radius-full);
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--color-charcoal);
+      }
+
+      /* ---------- SELECTION ---------- */
+      ::selection {
+        background: var(--color-orange);
+        color: var(--color-white);
+      }
+
+      /* ---------- HERO ORBIT POSITIONING ---------- */
+      .orbit-item {
+        position: absolute;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: white;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        color: var(--color-charcoal);
+      }
+
+      @media (min-width: 768px) {
+        .orbit-item {
+          width: 56px;
+          height: 56px;
+          font-size: 24px;
+        }
+      }
+
+      /* ---------- RESPONSIVE TWEAKS ---------- */
+      @media (max-width: 640px) {
+        .orbit-item {
+          width: 40px;
+          height: 40px;
+          font-size: 16px;
+        }
+        .hero-visual-wrap {
+          max-width: 320px;
+          margin: 0 auto;
+        }
+      }
+
+      /* ---------- SHIMMER LOADING (optional) ---------- */
+      .shimmer {
+        background: linear-gradient(
+          90deg,
+          var(--color-gray-soft) 25%,
+          var(--color-warm-white) 50%,
+          var(--color-gray-soft) 75%
+        );
+        background-size: 200% 100%;
+        animation: shimmer 1.5s ease-in-out infinite;
+      }
+      .box {
+        background: #3af4a3;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ============================================================
+    NAVIGATION
+    ============================================================ -->
+    <header class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-4">
+      <div class="max-w-[1400px] mx-auto">
+        <div
+          class="flex items-center justify-between glass-nav rounded-[28px] px-5 py-2.5 shadow-[0_4px_24px_rgba(26,26,26,0.04)]"
+        >
+          <!-- Logo -->
+          <a href="#" class="flex items-center gap-2 no-underline">
+            <div
+              class="w-12 h-12 rounded-full bg-[#232E15] flex items-center justify-center"
+            >
+              <img src="images/logo3.webp" alt="Sippzo Logo" />
+            </div>
+            <span class="font-bold text-[#1A1A1A] text-lg tracking-tight"
+              >SIPPZO</span
+            >
+          </a>
+
+          <!-- Desktop Nav -->
+          <nav class="hidden md:flex items-center gap-8">
+            <a
+              href="#technology"
+              class="text-sm font-medium text-[#1A1A1A]/70 hover:text-[#1A1A1A] transition-colors no-underline"
+              >Technology</a
+            >
+            <a
+              href="#products"
+              class="text-sm font-medium text-[#1A1A1A]/70 hover:text-[#1A1A1A] transition-colors no-underline"
+              >Products</a
+            >
+            <a
+              href="#use-cases"
+              class="text-sm font-medium text-[#1A1A1A]/70 hover:text-[#1A1A1A] transition-colors no-underline"
+              >Use Cases</a
+            >
+            <a
+              href="#about"
+              class="text-sm font-medium text-[#1A1A1A]/70 hover:text-[#1A1A1A] transition-colors no-underline"
+              >About</a
+            >
+            <a
+              href="#cta"
+              class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#E8652D] text-white text-sm font-semibold no-underline hover:bg-[#F47A3A] transition-all duration-300 shadow-[0_4px_16px_rgba(232,101,45,0.20)]"
+            >
+              Get Started
+              <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+          </nav>
+
+          <!-- Mobile Toggle -->
+          <button
+            id="menuToggle"
+            class="md:hidden text-[#1A1A1A] p-1"
+            aria-label="Toggle menu"
+          >
+            <i class="fa-solid fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Menu (hidden by default) -->
+    <div
+      id="mobileMenu"
+      class="fixed inset-0 z-40 pt-24 px-4 bg-white/90 backdrop-blur-[20px] md:hidden hidden"
+    >
+      <nav class="flex flex-col items-center gap-6 pt-8">
+        <a
+          href="#technology"
+          class="text-xl font-medium text-[#1A1A1A] no-underline hover:text-[#E8652D] transition-colors mobile-nav-link"
+          >Technology</a
+        >
+        <a
+          href="#products"
+          class="text-xl font-medium text-[#1A1A1A] no-underline hover:text-[#E8652D] transition-colors mobile-nav-link"
+          >Products</a
+        >
+        <a
+          href="#use-cases"
+          class="text-xl font-medium text-[#1A1A1A] no-underline hover:text-[#E8652D] transition-colors mobile-nav-link"
+          >Use Cases</a
+        >
+        <a
+          href="#about"
+          class="text-xl font-medium text-[#1A1A1A] no-underline hover:text-[#E8652D] transition-colors mobile-nav-link"
+          >About</a
+        >
+        <a
+          href="#cta"
+          class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#E8652D] text-white text-lg font-semibold no-underline hover:bg-[#F47A3A] transition-colors mt-4"
+        >
+          Get Started
+          <i class="fa-solid fa-arrow-right text-sm"></i>
+        </a>
+      </nav>
+    </div>
+
+    <!-- ============================================================
+    HERO
+    ============================================================ -->
+    <section
+      id="hero"
+      class="pt-28 md:pt-32 lg:pt-40 pb-20 sm:pb-24 lg:pb-32 overflow-hidden"
+    >
+      <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
+        <div
+          class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center"
+        >
+          <!-- Left -->
+          <div class="space-y-6">
+            <div>
+              <span
+                class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E8652D]/10 text-[#E8652D] text-xs font-semibold tracking-wide uppercase"
+              >
+                <i class="fa-regular fa-star text-xs"></i>
+                HH-Food Technology™
+              </span>
+              <h1
+                class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-[1.05] tracking-[-0.03em] mt-4"
+              >
+                Hot food.
+                <br />
+                <span class="text-gradient-orange">Anywhere.</span>
+              </h1>
+            </div>
+            <p
+              class="text-lg sm:text-xl text-[#1A1A1A]/70 max-w-lg leading-relaxed"
+            >
+              Turn ordinary water into a hot meal. No electricity, no gas, no
+              microwave. Just add water and wait minutes.
+            </p>
+            <div class="flex flex-wrap gap-4 pt-2">
+              <a
+                href="#technology"
+                class="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-[#E8652D] text-white text-sm sm:text-base font-semibold no-underline hover:bg-[#F47A3A] transition-all duration-300 shadow-[0_8px_24px_rgba(232,101,45,0.25)]"
+              >
+                Explore Technology
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+              </a>
+              <a
+                href="#products"
+                class="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-transparent text-[#1A1A1A] text-sm sm:text-base font-semibold no-underline border-[1.5px] border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#F5F4F0] transition-all duration-300"
+              >
+                View Products
+              </a>
+            </div>
+            <div class="flex items-center gap-8 pt-4">
+              <div class="text-center">
+                <div class="text-2xl font-bold text-[#1A1A1A]">4 min</div>
+                <div
+                  class="text-xs text-[#1A1A1A]/50 font-medium uppercase tracking-wider"
+                >
+                  Avg. Heat Time
+                </div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-bold text-[#1A1A1A]">100%</div>
+                <div
+                  class="text-xs text-[#1A1A1A]/50 font-medium uppercase tracking-wider"
+                >
+                  No Electricity
+                </div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-bold text-[#1A1A1A]">0</div>
+                <div
+                  class="text-xs text-[#1A1A1A]/50 font-medium uppercase tracking-wider"
+                >
+                  Gas or Stove
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right - Hero Visual -->
+          <div
+            class="relative flex items-center justify-center hero-visual-wrap"
+          >
+            <div
+              class="relative w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] md:w-[420px] md:h-[420px] lg:w-[480px] lg:h-[480px] mx-auto"
+            >
+              <!-- Glow rings -->
+              <div
+                class="absolute inset-0 rounded-full bg-[#E8652D]/10 blur-3xl animate-pulse-glow"
+              ></div>
+              <div
+                class="absolute inset-[10%] rounded-full bg-[#2B6BFF]/5 blur-2xl"
+              ></div>
+
+              <!-- Orbital rings -->
+              <div
+                class="absolute inset-0 rounded-full border-2 border-[#E8652D]/20 animate-spin-slow"
+              ></div>
+              <div
+                class="absolute inset-[12%] rounded-full border border-[#2B6BFF]/10 animate-spin-reverse"
+              ></div>
+
+              <!-- Center icon -->
+              <!-- Center Product -->
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div
+                  class="relative z-10 w-[200px] h-[200px] sm:w-[240px] sm:h-[240px] md:w-[300px] md:h-[300px] lg:w-[360px] lg:h-[360px] animate-float"
+                >
+                  <img
+                    id="productImage"
+                    src="images/product1.webp"
+                    alt="Product"
+                    class="w-full h-full object-contain transition-opacity duration-500"
+                  />
+                </div>
+              </div>
+
+              <!-- Orbiting particles -->
+              <div
+                class="orbit-item opacity-100 translate-x-[95px] sm:translate-x-[120px] md:translate-x-[160px]"
+                style="
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%) translate(160px, 0px);
+                  animation: float 3.5s ease-in-out infinite;
+                "
+              >
+                <i class="fa-solid fa-droplet" style="color: #2b6bff"></i>
+              </div>
+              <div
+                class="orbit-item opacity-100 translate-x-[95px] sm:translate-x-[120px] md:translate-x-[160px]"
+                style="
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%) translate(-80px, 138px);
+                  animation: float 4.5s ease-in-out infinite 0.3s;
+                "
+              >
+                <i class="fa-solid fa-bolt" style="color: #e8652d"></i>
+              </div>
+              <div
+                class="orbit-item opacity-100 translate-x-[95px] sm:translate-x-[120px] md:translate-x-[160px]"
+                style="
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%) translate(-80px, -138px);
+                  animation: float 5s ease-in-out infinite 0.6s;
+                "
+              >
+                <i
+                  class="fa-solid fa-temperature-high"
+                  style="color: #f47a3a"
+                ></i>
+              </div>
+
+              <!-- Label -->
+              <div
+                class="absolute -bottom-4 sm:-bottom-6 left-1/2 -translate-x-1/2 bg-white/80 backdrop-blur-md rounded-full px-4 sm:px-5 py-2 text-[11px] sm:text-xs shadow-[0_4px_16px_rgba(0,0,0,0.06)] whitespace-nowrap"
+              >
+                <span class="text-xs font-medium text-[#1A1A1A]"
+                  >HH-Food Technology™</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+    TECHNOLOGY SECTION
+    ============================================================ -->
+    <section id="technology" class="py-20 sm:py-24 lg:py-32">
+      <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
+        <div
+          class="text-center max-w-2xl mx-auto mb-16 animate-fade-up"
+          data-delay="0"
+        >
+          <span
+            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#2B6BFF]/10 text-[#2B6BFF] text-xs font-semibold tracking-wide uppercase"
+          >
+            <i class="fa-solid fa-microchip text-xs"></i>
+            The Technology
+          </span>
+          <h2
+            class="text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] tracking-[-0.02em] mt-4"
+          >
+            Heat without
+            <br />
+            <span class="text-gradient">electricity.</span>
+          </h2>
+          <p class="text-lg text-[#1A1A1A]/60 max-w-lg mx-auto mt-4">
+            Our patented HH-Food Technology™ uses a chemical reaction triggered
+            by ordinary water to generate safe, consistent heat.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Card 1 -->
+          <div
+            class="bg-white rounded-[28px] p-6 sm:p-8 shadow-[0_4px_24px_rgba(26,26,26,0.04)] hover:shadow-[0_16px_48px_rgba(26,26,26,0.08)] transition-all duration-500 text-center animate-fade-up"
+            data-delay="0.05"
+          >
+            <div
+              class="w-14 h-14 rounded-full bg-[#1A1A1A]/5 flex items-center justify-center mx-auto mb-4 text-[#1A1A1A] text-2xl"
+            >
+              <i class="fa-solid fa-fire"></i>
+            </div>
+            <h3 class="text-lg font-bold">Self-Heating</h3>
+            <p class="text-sm text-[#1A1A1A]/60 mt-1">
+              Activates with ordinary water.
+            </p>
+          </div>
+          <!-- Card 2 -->
+          <div
+            class="bg-white rounded-[28px] p-6 sm:p-8 shadow-[0_4px_24px_rgba(26,26,26,0.04)] hover:shadow-[0_16px_48px_rgba(26,26,26,0.08)] transition-all duration-500 text-center animate-fade-up"
+            data-delay="0.10"
+          >
+            <div
+              class="w-14 h-14 rounded-full bg-[#1A1A1A]/5 flex items-center justify-center mx-auto mb-4 text-[#1A1A1A] text-2xl"
+            >
+              <i class="fa-solid fa-droplet"></i>
+            </div>
+            <h3 class="text-lg font-bold">No Electricity</h3>
+            <p class="text-sm text-[#1A1A1A]/60 mt-1">
+              Works anywhere, anytime.
+            </p>
+          </div>
+          <!-- Card 3 -->
+          <div
+            class="bg-white rounded-[28px] p-6 sm:p-8 shadow-[0_4px_24px_rgba(26,26,26,0.04)] hover:shadow-[0_16px_48px_rgba(26,26,26,0.08)] transition-all duration-500 text-center animate-fade-up"
+            data-delay="0.15"
+          >
+            <div
+              class="w-14 h-14 rounded-full bg-[#1A1A1A]/5 flex items-center justify-center mx-auto mb-4 text-[#1A1A1A] text-2xl"
+            >
+              <i class="fa-regular fa-clock"></i>
+            </div>
+            <h3 class="text-lg font-bold">Ready in Minutes</h3>
+            <p class="text-sm text-[#1A1A1A]/60 mt-1">
+              From water to hot meal in 4 min.
+            </p>
+          </div>
+          <!-- Card 4 -->
+          <div
+            class="bg-white rounded-[28px] p-6 sm:p-8 shadow-[0_4px_24px_rgba(26,26,26,0.04)] hover:shadow-[0_16px_48px_rgba(26,26,26,0.08)] transition-all duration-500 text-center animate-fade-up"
+            data-delay="0.20"
+          >
+            <div
+              class="w-14 h-14 rounded-full bg-[#1A1A1A]/5 flex items-center justify-center mx-auto mb-4 text-[#1A1A1A] text-2xl"
+            >
+              <i class="fa-solid fa-shield"></i>
+            </div>
+            <h3 class="text-lg font-bold">Safe & Reliable</h3>
+            <p class="text-sm text-[#1A1A1A]/60 mt-1">
+              Patented HH-Food Technology™.
+            </p>
+          </div>
+        </div>
+
+        <!-- How it works -->
+        <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div
+            class="bg-white rounded-[28px] p-6 sm:p-8 shadow-[0_4px_24px_rgba(26,26,26,0.04)] hover:shadow-[0_16px_48px_rgba(26,26,26,0.08)] transition-all duration-500 animate-fade-up"
+            data-delay="0.05"
+          >
+            <div class="flex items-center gap-4">
+              <div class="text-4xl font-black text-[#E8652D]/20">01</div>
+              <div>
+                <h4 class="font-bold text-lg">Add Water</h4>
+                <p class="text-sm text-[#1A1A1A]/60">
+                  Pour ordinary water into the activation chamber.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="bg-white rounded-[28px] p-6 sm:p-8 shadow-[0_4px_24px_rgba(26,26,26,0.04)] hover:shadow-[0_16px_48px_rgba(26,26,26,0.08)] transition-all duration-500 animate-fade-up"
+            data-delay="0.10"
+          >
+            <div class="flex items-center gap-4">
+              <div class="text-4xl font-black text-[#E8652D]/20">02</div>
+              <div>
+                <h4 class="font-bold text-lg">Activate</h4>
+                <p class="text-sm text-[#1A1A1A]/60">
+                  The HH-Food Technology™ instantly begins heating.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="bg-white rounded-[28px] p-6 sm:p-8 shadow-[0_4px_24px_rgba(26,26,26,0.04)] hover:shadow-[0_16px_48px_rgba(26,26,26,0.08)] transition-all duration-500 animate-fade-up"
+            data-delay="0.15"
+          >
+            <div class="flex items-center gap-4">
+              <div class="text-4xl font-black text-[#E8652D]/20">03</div>
+              <div>
+                <h4 class="font-bold text-lg">Enjoy</h4>
+                <p class="text-sm text-[#1A1A1A]/60">
+                  In minutes, your meal is hot and ready to eat.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+    PRODUCTS SECTION (dark)
+    ============================================================ -->
+    <section
+      id="products"
+      class="py-20 sm:py-24 lg:py-32 bg-[#1A1A1A] text-[#F5F4F0]"
+    >
+      <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
+        <div
+          class="text-center max-w-2xl mx-auto mb-16 animate-fade-up"
+          data-delay="0"
+        >
+          <span
+            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F5F4F0]/10 text-[#F5F4F0]/60 text-xs font-semibold tracking-wide uppercase"
+          >
+            <i class="fa-solid fa-grid-2 text-xs"></i>
+            Products
+          </span>
+          <h2
+            class="text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] tracking-[-0.02em] mt-4"
+          >
+            Hot meals.
+            <br />
+            <span class="text-gradient-orange">Any craving.</span>
+          </h2>
+          <p class="text-lg text-[#F5F4F0]/50 max-w-lg mx-auto mt-4">
+            From morning tea to dinner biryani — SIPPZO brings comfort food
+            anywhere.
+          </p>
+        </div>
+
+        <div
+          class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6"
+        >
+          <!-- Product: Tea -->
+          <div
+            class="bg-[#1A1A1A] rounded-[28px] p-4 sm:p-6 text-center hover:bg-[#2A2A2A] transition-colors cursor-pointer border border-[#2A2A2A] hover:border-[#3A3A3A] animate-fade-up"
+            data-delay="0.05"
+          >
+            <div
+              class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3"
+              style="background-color: rgba(232, 101, 45, 0.2)"
+            >
+              <i
+                class="fa-solid fa-mug-saucer text-2xl"
+                style="color: #e8652d"
+              ></i>
+            </div>
+            <h4 class="font-bold text-base">Tea</h4>
+            <div
+              class="flex items-center justify-center gap-3 mt-1 text-xs text-[#F5F4F0]/40"
+            >
+              <span class="flex items-center gap-1"
+                ><i class="fa-regular fa-clock text-[10px]"></i> 2 min</span
+              >
+              <span class="flex items-center gap-1"
+                ><i class="fa-solid fa-temperature-high text-[10px]"></i>
+                85°C</span
+              >
+            </div>
+          </div>
+          <!-- Product: Coffee -->
+          <div
+            class="bg-[#1A1A1A] rounded-[28px] p-4 sm:p-6 text-center hover:bg-[#2A2A2A] transition-colors cursor-pointer border border-[#2A2A2A] hover:border-[#3A3A3A] animate-fade-up"
+            data-delay="0.10"
+          >
+            <div
+              class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3"
+              style="background-color: rgba(111, 78, 55, 0.2)"
+            >
+              <i
+                class="fa-solid fa-mug-hot text-2xl"
+                style="color: #6f4e37"
+              ></i>
+            </div>
+            <h4 class="font-bold text-base">Coffee</h4>
+            <div
+              class="flex items-center justify-center gap-3 mt-1 text-xs text-[#F5F4F0]/40"
+            >
+              <span class="flex items-center gap-1"
+                ><i class="fa-regular fa-clock text-[10px]"></i> 2 min</span
+              >
+              <span class="flex items-center gap-1"
+                ><i class="fa-solid fa-temperature-high text-[10px]"></i>
+                88°C</span
+              >
+            </div>
+          </div>
+          <!-- Product: Oats -->
+          <div
+            class="bg-[#1A1A1A] rounded-[28px] p-4 sm:p-6 text-center hover:bg-[#2A2A2A] transition-colors cursor-pointer border border-[#2A2A2A] hover:border-[#3A3A3A] animate-fade-up"
+            data-delay="0.15"
+          >
+            <div
+              class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3"
+              style="background-color: rgba(212, 163, 115, 0.2)"
+            >
+              <i
+                class="fa-solid fa-bowl-food text-2xl"
+                style="color: #d4a373"
+              ></i>
+            </div>
+            <h4 class="font-bold text-base">Oats</h4>
+            <div
+              class="flex items-center justify-center gap-3 mt-1 text-xs text-[#F5F4F0]/40"
+            >
+              <span class="flex items-center gap-1"
+                ><i class="fa-regular fa-clock text-[10px]"></i> 3 min</span
+              >
+              <span class="flex items-center gap-1"
+                ><i class="fa-solid fa-temperature-high text-[10px]"></i>
+                80°C</span
+              >
+            </div>
+          </div>
+          <!-- Product: Soup -->
+          <div
+            class="bg-[#1A1A1A] rounded-[28px] p-4 sm:p-6 text-center hover:bg-[#2A2A2A] transition-colors cursor-pointer border border-[#2A2A2A] hover:border-[#3A3A3A] animate-fade-up"
+            data-delay="0.20"
+          >
+            <div
+              class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3"
+              style="background-color: rgba(232, 152, 58, 0.2)"
+            >
+              <i
+                class="fa-solid fa-bowl-food text-2xl"
+                style="color: #e8983a"
+              ></i>
+            </div>
+            <h4 class="font-bold text-base">Soup</h4>
+            <div
+              class="flex items-center justify-center gap-3 mt-1 text-xs text-[#F5F4F0]/40"
+            >
+              <span class="flex items-center gap-1"
+                ><i class="fa-regular fa-clock text-[10px]"></i> 3 min</span
+              >
+              <span class="flex items-center gap-1"
+                ><i class="fa-solid fa-temperature-high text-[10px]"></i>
+                85°C</span
+              >
+            </div>
+          </div>
+          <!-- Product: Biryani -->
+          <div
+            class="bg-[#1A1A1A] rounded-[28px] p-4 sm:p-6 text-center hover:bg-[#2A2A2A] transition-colors cursor-pointer border border-[#2A2A2A] hover:border-[#3A3A3A] animate-fade-up"
+            data-delay="0.25"
+          >
+            <div
+              class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3"
+              style="background-color: rgba(232, 101, 45, 0.2)"
+            >
+              <i
+                class="fa-solid fa-utensils text-2xl"
+                style="color: #e8652d"
+              ></i>
+            </div>
+            <h4 class="font-bold text-base">Biryani</h4>
+            <div
+              class="flex items-center justify-center gap-3 mt-1 text-xs text-[#F5F4F0]/40"
+            >
+              <span class="flex items-center gap-1"
+                ><i class="fa-regular fa-clock text-[10px]"></i> 4 min</span
+              >
+              <span class="flex items-center gap-1"
+                ><i class="fa-solid fa-temperature-high text-[10px]"></i>
+                90°C</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+    AUDIENCE / USE CASES
+    ============================================================ -->
+    <section id="use-cases" class="py-20 sm:py-24 lg:py-32">
+      <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
+        <div
+          class="text-center max-w-2xl mx-auto mb-16 animate-fade-up"
+          data-delay="0"
+        >
+          <span
+            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E8652D]/10 text-[#E8652D] text-xs font-semibold tracking-wide uppercase"
+          >
+            <i class="fa-solid fa-users text-xs"></i>
+            Who it's for
+          </span>
+          <h2
+            class="text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] tracking-[-0.02em] mt-4"
+          >
+            Hot food for
+            <br />
+            <span class="text-gradient">everyone.</span>
+          </h2>
+          <p class="text-lg text-[#1A1A1A]/60 max-w-lg mx-auto mt-4">
+            From students to travelers, SIPPZO makes hot meals accessible
+            anywhere.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Audience 1 -->
+          <div
+            class="bg-white rounded-[28px] p-6 sm:p-8 shadow-[0_4px_24px_rgba(26,26,26,0.04)] hover:shadow-[0_16px_48px_rgba(26,26,26,0.08)] transition-all duration-500 animate-fade-up"
+            data-delay="0.05"
+          >
+            <div
+              class="w-12 h-12 rounded-full bg-[#1A1A1A]/5 flex items-center justify-center mb-4 text-[#1A1A1A] text-xl"
+            >
+              <i class="fa-solid fa-user-graduate"></i>
+            </div>
+            <h4 class="text-lg font-bold">High School & College Students</h4>
+            <p class="text-sm text-[#1A1A1A]/60 mt-1">
+              Hot meals in dorms without a kitchen.
+            </p>
+          </div>
+          <!-- Audience 2 -->
+          <div
+            class="bg-white rounded-[28px] p-6 sm:p-8 shadow-[0_4px_24px_rgba(26,26,26,0.04)] hover:shadow-[0_16px_48px_rgba(26,26,26,0.08)] transition-all duration-500 animate-fade-up"
+            data-delay="0.10"
+          >
+            <div
+              class="w-12 h-12 rounded-full bg-[#1A1A1A]/5 flex items-center justify-center mb-4 text-[#1A1A1A] text-xl"
+            >
+              <i class="fa-solid fa-mountain"></i>
+            </div>
+            <h4 class="text-lg font-bold">Trekking & Camping</h4>
+            <p class="text-sm text-[#1A1A1A]/60 mt-1">
+              Warm food at the summit. No stove needed.
+            </p>
+          </div>
+          <!-- Audience 3 -->
+          <div
+            class="bg-white rounded-[28px] p-6 sm:p-8 shadow-[0_4px_24px_rgba(26,26,26,0.04)] hover:shadow-[0_16px_48px_rgba(26,26,26,0.08)] transition-all duration-500 animate-fade-up"
+            data-delay="0.15"
+          >
+            <div
+              class="w-12 h-12 rounded-full bg-[#1A1A1A]/5 flex items-center justify-center mb-4 text-[#1A1A1A] text-xl"
+            >
+              <i class="fa-solid fa-briefcase"></i>
+            </div>
+            <h4 class="text-lg font-bold">Office Workers</h4>
+            <p class="text-sm text-[#1A1A1A]/60 mt-1">
+              Fresh lunch at your desk in minutes.
+            </p>
+          </div>
+          <!-- Audience 4 -->
+          <div
+            class="bg-white rounded-[28px] p-6 sm:p-8 shadow-[0_4px_24px_rgba(26,26,26,0.04)] hover:shadow-[0_16px_48px_rgba(26,26,26,0.08)] transition-all duration-500 animate-fade-up"
+            data-delay="0.20"
+          >
+            <div
+              class="w-12 h-12 rounded-full bg-[#1A1A1A]/5 flex items-center justify-center mb-4 text-[#1A1A1A] text-xl"
+            >
+              <i class="fa-solid fa-train"></i>
+            </div>
+            <h4 class="text-lg font-bold">Train Passengers</h4>
+            <p class="text-sm text-[#1A1A1A]/60 mt-1">
+              Home-style meals on long journeys.
+            </p>
+          </div>
+          <!-- Audience 5 -->
+          <div
+            class="bg-white rounded-[28px] p-6 sm:p-8 shadow-[0_4px_24px_rgba(26,26,26,0.04)] hover:shadow-[0_16px_48px_rgba(26,26,26,0.08)] transition-all duration-500 animate-fade-up"
+            data-delay="0.25"
+          >
+            <div
+              class="w-12 h-12 rounded-full bg-[#1A1A1A]/5 flex items-center justify-center mb-4 text-[#1A1A1A] text-xl"
+            >
+              <i class="fa-solid fa-compass"></i>
+            </div>
+            <h4 class="text-lg font-bold">Travelers</h4>
+            <p class="text-sm text-[#1A1A1A]/60 mt-1">
+              Your personal hot meal anywhere.
+            </p>
+          </div>
+          <!-- Audience 6 -->
+          <div
+            class="bg-white rounded-[28px] p-6 sm:p-8 shadow-[0_4px_24px_rgba(26,26,26,0.04)] hover:shadow-[0_16px_48px_rgba(26,26,26,0.08)] transition-all duration-500 animate-fade-up"
+            data-delay="0.30"
+          >
+            <div
+              class="w-12 h-12 rounded-full bg-[#1A1A1A]/5 flex items-center justify-center mb-4 text-[#1A1A1A] text-xl"
+            >
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+            <h4 class="text-lg font-bold">Delivery Workers</h4>
+            <p class="text-sm text-[#1A1A1A]/60 mt-1">
+              Hot food during your shift.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+    CTA / FINAL (dark)
+    ============================================================ -->
+    <section
+      id="cta"
+      class="py-20 sm:py-24 lg:py-32 bg-[#1A1A1A] text-[#F5F4F0]"
+    >
+      <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
+        <div
+          class="text-center max-w-3xl mx-auto animate-fade-up"
+          data-delay="0"
+        >
+          <span
+            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E8652D]/20 text-[#E8652D] text-xs font-semibold tracking-wide uppercase"
+          >
+            <i class="fa-solid fa-rocket text-xs"></i>
+            Join the future
+          </span>
+          <h2
+            class="text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] tracking-[-0.02em] mt-4"
+          >
+            Ready to <br />
+            <span class="text-gradient-orange">heat things up?</span>
+          </h2>
+          <p class="text-lg text-[#F5F4F0]/50 max-w-lg mx-auto mt-4">
+            Be among the first to experience portable food technology.
+          </p>
+          <div class="flex flex-wrap justify-center gap-4 mt-8">
+            <a
+              href="#"
+              class="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-[#E8652D] text-white text-sm sm:text-base font-semibold no-underline hover:bg-[#F47A3A] transition-all duration-300 shadow-[0_8px_24px_rgba(232,101,45,0.25)]"
+            >
+              Get Early Access
+              <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+            <a
+              href="#technology"
+              class="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-white text-[#1A1A1A] text-sm sm:text-base font-semibold no-underline hover:bg-[#F5F4F0] transition-all duration-300"
+            >
+              Learn More
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer id="about" class="bg-[#1A1A1A] border-t border-[#2A2A2A] py-12">
+      <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div class="col-span-2 md:col-span-2">
+            <div class="flex items-center gap-2 mb-4">
+              <div
+                class="w-8 h-8 rounded-full bg-[#E8652D] flex items-center justify-center"
+              >
+                <span class="text-white font-bold text-sm">S</span>
+              </div>
+              <span class="font-bold text-[#F5F4F0] text-lg">SIPPZO</span>
+            </div>
+            <p class="text-sm text-[#F5F4F0]/40 max-w-sm">
+              The future of portable food technology. Hot meals anywhere,
+              anytime.
+            </p>
+          </div>
+
+
+          <div>
+            <h5
+              class="text-xs font-semibold uppercase tracking-wider text-[#F5F4F0]/30 mb-4"
+            >
+              Company
+            </h5>
+            <ul class="space-y-2 text-sm text-[#F5F4F0]/50">
+              <li>
+                <a
+                  href="#"
+                  class="hover:text-[#F5F4F0] transition-colors no-underline"
+                  >About</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="hover:text-[#F5F4F0] transition-colors no-underline"
+                  >Careers</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="hover:text-[#F5F4F0] transition-colors no-underline"
+                  >Press</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h5
+              class="text-xs font-semibold uppercase tracking-wider text-[#F5F4F0]/30 mb-4"
+            >
+              Connect
+            </h5>
+            <ul class="space-y-2 text-sm text-[#F5F4F0]/50">
+              <li>
+                <a
+                  href="#"
+                  class="hover:text-[#F5F4F0] transition-colors no-underline"
+                  ><i class="fa-brands fa-x-twitter mr-2"></i>Twitter</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="hover:text-[#F5F4F0] transition-colors no-underline"
+                  ><i class="fa-brands fa-instagram mr-2"></i>Instagram</a
+                >
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  href="https://www.linkedin.com/in/sagar-kumar-b1701139a/"
+                  class="hover:text-[#F5F4F0] transition-colors no-underline"
+                  ><i class="fa-brands fa-linkedin mr-2"></i>LinkedIn</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="mt-12 pt-8 border-t border-[#2A2A2A] flex flex-col sm:flex-row justify-between items-center gap-4"
+        >
+          <span class="text-xs text-[#F5F4F0]/20"
+            >© 2026 SIPPZO. All rights reserved.</span
+          >
+          <span class="text-xs text-[#F5F4F0]/20"
+            >HH-Food Technology™ Patented</span
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const images = [
+        "images/product1.webp",
+        "images/product2.webp",
+        "images/product3.webp",
+        "images/product4.webp",
+        "images/product6.webp",
+      ];
+
+      const img = document.getElementById("productImage");
+      const items = Array.from(document.querySelectorAll(".orbit-item"));
+
+      let index = 0;
+
+      const displayTime = 4500;
+
+      setInterval(() => {
+        img.classList.replace("opacity-100", "opacity-0");
+        // items.forEach(item => item.classList.replace("opacity-100", "opacity-0"));
+
+        setTimeout(() => {
+          // items.forEach(item => item.classList.replace("opacity-0", "opacity-100"))
+          index = (index + 1) % images.length;
+          img.src = images[index];
+          img.classList.replace("opacity-0", "opacity-100");
+        }, 500);
+      }, displayTime);
+    </script>
+
+    <!-- ============================================================
+    VANILLA JAVASCRIPT
+    ============================================================ -->
+    <script>
+      (function () {
+        "use strict";
+
+        // ----------------------------------------------------------
+        // 1. MOBILE MENU TOGGLE
+        // ----------------------------------------------------------
+        const menuToggle = document.getElementById("menuToggle");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        if (menuToggle && mobileMenu) {
+          let isOpen = false;
+
+          function toggleMenu() {
+            isOpen = !isOpen;
+            mobileMenu.classList.toggle("hidden", !isOpen);
+            menuToggle.innerHTML = isOpen
+              ? '<i class="fa-solid fa-xmark text-xl"></i>'
+              : '<i class="fa-solid fa-bars text-xl"></i>';
+            document.body.style.overflow = isOpen ? "hidden" : "";
+          }
+
+          menuToggle.addEventListener("click", toggleMenu);
+
+          // Close menu when a nav link is clicked
+          document
+            .querySelectorAll(".mobile-nav-link")
+            .forEach(function (link) {
+              link.addEventListener("click", function () {
+                if (isOpen) toggleMenu();
+              });
+            });
+
+          // Close on escape key
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape" && isOpen) toggleMenu();
+          });
+        }
+
+        // ----------------------------------------------------------
+        // 2. SCROLL-TRIGGERED ANIMATIONS (Intersection Observer)
+        // ----------------------------------------------------------
+        const fadeElements = document.querySelectorAll(".animate-fade-up");
+
+        if (fadeElements.length > 0) {
+          const observer = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  // Respect a small delay if set via data-delay
+                  const delay =
+                    parseFloat(entry.target.getAttribute("data-delay")) || 0;
+                  setTimeout(function () {
+                    entry.target.classList.add("visible");
+                  }, delay * 1000);
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            {
+              threshold: 0.15,
+              rootMargin: "0px 0px -40px 0px",
+            },
+          );
+
+          fadeElements.forEach(function (el) {
+            observer.observe(el);
+          });
+        }
+
+        // ----------------------------------------------------------
+        // 3. SMOOTH SCROLL FOR NAV ANCHOR LINKS (progressive enhancement)
+        // ----------------------------------------------------------
+        document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+          anchor.addEventListener("click", function (e) {
+            const targetId = this.getAttribute("href");
+            if (targetId === "#") return;
+            const targetEl = document.querySelector(targetId);
+            if (targetEl) {
+              e.preventDefault();
+              const navHeight = 80;
+              const top =
+                targetEl.getBoundingClientRect().top +
+                window.pageYOffset -
+                navHeight;
+              window.scrollTo({ top: top, behavior: "smooth" });
+            }
+          });
+        });
+
+        // ----------------------------------------------------------
+        // 4. ACTIVE NAV LINK HIGHLIGHT (optional)
+        // ----------------------------------------------------------
+        const sections = document.querySelectorAll("section[id]");
+        const navLinks = document.querySelectorAll(
+          'nav a[href^="#"]:not(.btn)',
+        );
+
+        if (sections.length > 0 && navLinks.length > 0) {
+          const observer = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  const id = entry.target.id;
+                  navLinks.forEach(function (link) {
+                    const href = link.getAttribute("href");
+                    if (href === "#" + id) {
+                      link.classList.add("text-[#1A1A1A]");
+                      link.classList.remove("text-[#1A1A1A]/70");
+                    } else {
+                      link.classList.remove("text-[#1A1A1A]");
+                      link.classList.add("text-[#1A1A1A]/70");
+                    }
+                  });
+                }
+              });
+            },
+            {
+              threshold: 0.35,
+              rootMargin: "0px 0px -80px 0px",
+            },
+          );
+
+          sections.forEach(function (section) {
+            observer.observe(section);
+          });
+        }
+
+        // ----------------------------------------------------------
+        // 5. PARALLAX ORBIT POSITIONING (ensure orbit items are placed)
+        //    The orbit items use CSS transforms, but we need to ensure
+        //    they're positioned correctly on all screen sizes.
+        //    We'll use a small resize handler to keep things crisp.
+        // ----------------------------------------------------------
+        function positionOrbitItems() {
+          const items = document.querySelectorAll(".orbit-item");
+          if (items.length === 0) return;
+
+          // The items already have inline styles with transform.
+          // We just need to ensure they're visible.
+          // No additional positioning needed — they use top:50%; left:50%; transform: translate(-50%,-50%) translate(X,Y)
+          // which keeps them centered relative to the container.
+        }
+
+        // Run on load and resize
+        window.addEventListener("load", positionOrbitItems);
+        window.addEventListener("resize", positionOrbitItems);
+
+        // ----------------------------------------------------------
+        // 6. KEYBOARD ACCESSIBILITY: close mobile menu on Escape
+        //    Already handled above, but we add an extra listener
+        // ----------------------------------------------------------
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") {
+            const menu = document.getElementById("mobileMenu");
+            if (menu && !menu.classList.contains("hidden")) {
+              const toggle = document.getElementById("menuToggle");
+              if (toggle) toggle.click();
+            }
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
